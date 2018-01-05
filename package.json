@@ -1,6 +1,6 @@
 {
   "name": "ng-animate-scroll",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Customisable angular module to animate scroll event to an element. Compatible with Angular 2.x onwards",
   "main": "animate-scroll.umd.js",
   "jsnext:main": "animate-scroll.esm.js",
