@@ -6,12 +6,17 @@ export class AnimateScrollService {
     /**
     * @desc scrollToItem Fn scrolls to an items by utilising the animated scroll fn (scrollTo)
     *       and calculating the height of the header to accurately find the item's position.
-    * @param itemID: element's ID will be scrolled to
+    * @param elementID: element's ID that will be scrolled to.
+    * @param duration: duration in milliseconds, default is 750.
     */
-    scrollToItem(itemID: string) {
-        const item = document.getElementById(itemID); // the element
-        const itemPos = item.offsetTop;
-        this.scrollTo(window.document, itemPos);
+    scrollToElement(elementID: string, duration: number = 750) {
+        const item = document.getElementById(elementID); // the element
+        if (item) {
+            const itemPos = item.offsetTop;
+            this.scrollTo(window.document, itemPos, duration);
+        } else {
+            console.log(`Could not find element with the following ID: ${elementID}`);
+        }
     }
 
     /**
@@ -20,7 +25,7 @@ export class AnimateScrollService {
      * @param to is the location to scroll to.
      * @param duration is the length of the animation.
      */
-    scrollTo(element, to: number, duration: number = 750) {
+    private scrollTo(element, to: number, duration) {
         const increment = 20, that = this;
         let start, remaining, currentTime = 0, animateScroll;
 
