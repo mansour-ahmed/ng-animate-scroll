@@ -15,7 +15,7 @@ export class AnimateScrollService {
             const itemPos = item.offsetTop;
             this.scrollTo(window.document, itemPos, duration);
         } else {
-            console.log(`Could not find element with the following ID: ${elementID}`);
+            console.error(`Could not find element with the following ID: ${elementID}`);
         }
     }
 
