@@ -2,7 +2,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import angular from 'rollup-plugin-angular';
 import typescript from 'rollup-plugin-typescript';
-var sass = require('node-sass');
+// var sass = require('node-sass');
 import { nameLibrary, PATH_SRC, PATH_DIST } from './config-library.js';
 
 export default {
@@ -25,7 +25,7 @@ export default {
           style: scss => {
             let css;
             if (scss) {
-              css = sass.renderSync({ data: scss }).css.toString();
+              // css = sass.renderSync({ data: scss }).css.toString();
               console.log(css);
             } else {
               css = '';
