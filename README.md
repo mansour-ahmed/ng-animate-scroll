@@ -11,51 +11,15 @@ npm i ng-animate-scroll --save
 
 ## Usage
 
-### 1. Import the `AnimateScrollModule`:
-
-Finally, you can use ng-animate-scroll in your Angular project. You have to import `AnimateScrollModule` in the root NgModule of your application or the shared module depending on how you are architecting your application.
-
-##### AppModule
-
-```ts
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AnimateScrollModule } from 'ng-animate-scroll';
-
-@NgModule({
-    imports: [
-        BrowserModule,
-        AnimateScrollModule,
-    ],
-    bootstrap: [AppComponent]
-})
-export class AppModule { }
-```
-
-##### SharedModule
-
-If you use a [`SharedModule`](https://angular.io/docs/ts/latest/guide/ngmodule.html#!#shared-modules) that you import in multiple other feature modules,
-you can export the `AnimateScrollModule` to make sure you don't have to import it in every module.
-
-```ts
-@NgModule({
-    exports: [
-        CommonModule,
-        AnimateScrollModule
-    ]
-})
-export class SharedModule { }
-```
-
-### 2. Methods:
+### 1. Methods:
 #### AnimateScrollService
 - `scrollToElement(elementID: string, duration: number = 750)`: Find an element using its ID and scrolls to it smoothly. Duration of the animation is optional and has default of 750 ms.
 
-### 3. Example
+### 2. Example
 
 ```ts
 import { Component } from '@angular/core';
-import { AnimateScrollService } from 'ng-animate-scroll';
+import { NgAnimateScrollService } from 'ng-animate-scroll';
 
 @Component({
     selector: 'app',
@@ -67,11 +31,11 @@ import { AnimateScrollService } from 'ng-animate-scroll';
 })
 export class AppComponent {
 
-    constructor(private animateScrollService: AnimateScrollService) {
+    constructor(private animateScrollService: NgAnimateScrollService) {
     }
 
     navigateToHeader(duration?:number) {
-        this.animateScrollService.scrollToItem('header', duration)
+        this.animateScrollService.scrollToElement('header', duration)
     }
 }
 ```
