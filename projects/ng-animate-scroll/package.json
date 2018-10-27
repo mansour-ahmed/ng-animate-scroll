@@ -1,0 +1,27 @@
+{
+  "name": "ng-animate-scroll",
+  "version": "7.0.0",
+  "description": "Customisable angular module to animate scroll event to an element. Compatible with Angular 2.x onwards",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mansour-ahmed/ng-animate-scroll.git"
+  },
+  "keywords": [
+    "Angular",
+    "animate",
+    "scroll",
+    "module",
+    "ng",
+    "utility"
+  ],
+  "author": "Ahmed Mansour",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mansour-ahmed/ng-animate-scroll/issues"
+  },
+  "homepage": "https://github.com/mansour-ahmed/ng-animate-scroll#readme",
+  "peerDependencies": {
+    "@angular/common": "^7.0.1",
+    "@angular/core": "^7.0.1"
+  }
+}
