@@ -11,12 +11,20 @@ export class NgAnimateScrollService {
    *       and calculating the height of the header to accurately find the item's position.
    * @param elementID: element's ID that will be scrolled to.
    * @param duration: duration in milliseconds, default is 750.
+   * @param container the container html native element (or its id), window will be used if not set
    */
-  scrollToElement(elementID: string, duration: number = 750) {
+  scrollToElement(elementID: string, duration: number = 750, container?) {
     const item = document.getElementById(elementID); // the element
     if (item) {
       const itemPos = item.offsetTop;
-      this.scrollTo(window.document, itemPos, duration);
+      if (container) {
+        if (typeof container === 'string') {
+          container = document.getElementById(container);
+        }
+        this.scrollTo(container, itemPos, duration, true);
+      } else {
+        this.scrollTo(window.document, itemPos, duration);
+      }
     } else {
       console.error(
         `Could not find element with the following ID: ${elementID}`
@@ -30,7 +38,7 @@ export class NgAnimateScrollService {
    * @param to is the location to scroll to.
    * @param duration is the length of the animation.
    */
-  private scrollTo(element, to: number, duration) {
+  private scrollTo(element, to: number, duration, isContainer: boolean = false) {
     const increment = 20,
       that = this;
     let start,
@@ -38,7 +46,10 @@ export class NgAnimateScrollService {
       currentTime = 0,
       animateScroll;
 
-    if (element.body.scrollTop > 0) {
+    if (isContainer) {
+      // for custom container element
+      start = element.scrollTop;
+    } else if (element.body.scrollTop > 0) {
       // for chrome
       start = element.body.scrollTop;
     } else if (element.documentElement.scrollTop > 0) {
@@ -53,8 +64,12 @@ export class NgAnimateScrollService {
     animateScroll = () => {
       currentTime += increment;
       const val = that.easeInOut(currentTime, start, remaining, duration);
-      // to allow scroll function on different browsers both chrome and firefox
-      top.window.scroll(0, val);
+      if (isContainer) {
+        element.scroll(0, val);
+      } else {
+        // to allow scroll function on different browsers both chrome and firefox
+        top.window.scroll(0, val);
+      }
 
       if (currentTime < duration) {
         setTimeout(animateScroll, increment);
